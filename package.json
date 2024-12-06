@@ -1,0 +1,35 @@
+{
+  "name": "wp-reference-manager",
+  "version": "1.0.0",
+  "description": "WordPress block editor plugin for managing references and citations",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "lint": "npm run lint:js && npm run lint:css",
+    "format": "wp-scripts format",
+    "build:dist": "npm run build && rm -rf dist && mkdir dist && cp -r build includes languages wp-reference-manager.php readme.txt dist/ && cd dist && zip -r ../wp-reference-manager.zip ."
+  },
+  "author": "Your Name",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.6.0",
+    "@wordpress/eslint-plugin": "^21.6.0",
+    "@wordpress/prettier-config": "^4.13.0",
+    "@wordpress/stylelint-config": "^23.5.0"
+  },
+  "dependencies": {
+    "@wordpress/blocks": "^14.2.0",
+    "@wordpress/components": "^28.13.0",
+    "@wordpress/compose": "^7.13.0",
+    "@wordpress/data": "^10.13.0",
+    "@wordpress/element": "^6.13.0",
+    "@wordpress/i18n": "^5.13.0",
+    "citation-js": "^0.7.16"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
