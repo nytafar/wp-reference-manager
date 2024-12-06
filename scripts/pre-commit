@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Check if CHANGELOG.md has been modified
+if ! git diff --cached --name-only | grep -q "CHANGELOG.md"; then
+    echo "⚠️  Warning: CHANGELOG.md has not been modified."
+    echo "Please update the changelog with your changes under the [Unreleased] section."
+    echo "Continue anyway? [y/N] "
+    read -r response
+    if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
+        exit 1
+    fi
+fi
+
+# Run version bump script
+node scripts/version-bump.js

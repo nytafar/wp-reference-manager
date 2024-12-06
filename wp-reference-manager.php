@@ -3,7 +3,7 @@
  * Plugin Name: WP Reference Manager
  * Plugin URI: https://your-website.com/wp-reference-manager
  * Description: A modern block editor plugin for managing references, citations, and footnotes with support for PMID, DOI, URL, and ISBN.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: Your Name
  * Author URI: https://your-website.com
  * License: GPL v2 or later
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WP_REFERENCE_MANAGER_VERSION', '1.0.0');
+define('WP_REFERENCE_MANAGER_VERSION', '1.0.2');
 define('WP_REFERENCE_MANAGER_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WP_REFERENCE_MANAGER_PLUGIN_URL', plugin_dir_url(__FILE__));
 
