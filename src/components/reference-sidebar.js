@@ -43,7 +43,7 @@ export const ReferenceSidebar = () => {
                 metadata = await fetchPMIDMetadata(identifier);
             }
 
-            const updatedReferences = [...references, metadata];
+            const updatedReferences = [...references, JSON.stringify(metadata)];
             editPost({
                 meta: {
                     '_wp_reference_list': updatedReferences,
@@ -111,13 +111,13 @@ export const ReferenceSidebar = () => {
                     ) : (
                         references.map((ref, index) => (
                             <div key={index} className="reference-item">
-                                <h4>{ref.title}</h4>
+                                <h4>{JSON.parse(ref).title}</h4>
                                 <p>
-                                    {ref.authors
+                                    {JSON.parse(ref).authors
                                         .map(author => `${author.lastName}, ${author.firstName}`)
                                         .join('; ')}
                                 </p>
-                                <p>{`${ref.journal} (${ref.year})`}</p>
+                                <p>{`${JSON.parse(ref).journal} (${JSON.parse(ref).year})`}</p>
                                 <Button
                                     isDestructive
                                     onClick={() => handleRemoveReference(index)}

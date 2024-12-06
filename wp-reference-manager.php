@@ -67,8 +67,24 @@ class WP_Reference_Manager {
         // Register blocks
         add_action('init', array($this, 'register_blocks'));
 
+        // Fetch and display reference list in the editor
+        add_action('rest_api_init', function() {
+            register_rest_field('post', '_wp_reference_list', array(
+                'get_callback' => function($post_arr) {
+                    return get_post_meta($post_arr['id'], '_wp_reference_list', true);
+                },
+                'schema' => array(
+                    'type' => 'array',
+                    'context' => array('view', 'edit')
+                ),
+            ));
+        });
+
         // Enqueue editor assets
         add_action('enqueue_block_editor_assets', array($this, 'enqueue_editor_assets'));
+
+        // Save reference list to post meta on post save
+        add_action('save_post', array($this, 'save_reference_list'));
     }
 
     /**
@@ -87,10 +103,20 @@ class WP_Reference_Manager {
      */
     public function register_post_meta() {
         register_post_meta('', '_wp_reference_list', array(
-            'show_in_rest' => true,
+            'show_in_rest' => array(
+                'schema' => array(
+                    'type' => 'array',
+                    'items' => array(
+                        'type' => 'string', // Assuming each reference is a string
+                    ),
+                ),
+            ),
             'single' => true,
             'type' => 'array',
             'default' => array(),
+            'auth_callback' => function() {
+                return current_user_can('edit_posts');
+            },
         ));
     }
 
@@ -140,6 +166,35 @@ class WP_Reference_Manager {
             array('wp-edit-blocks'),
             $asset_file['version']
         );
+    }
+
+    /**
+     * Save reference list to post meta on post save
+     *
+     * @param int $post_id The ID of the post being saved.
+     */
+    public function save_reference_list($post_id) {
+        // Check if this is an autosave or a revision, and if so, return early
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+        if (wp_is_post_revision($post_id)) {
+            return;
+        }
+
+        // Check if the current user has permission to edit the post
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        // Get the reference list from the request
+        $reference_list = isset($_POST['_wp_reference_list']) ? $_POST['_wp_reference_list'] : [];
+
+        // Log the reference list for debugging
+        error_log('Saving reference list for post ID ' . $post_id . ': ' . print_r($reference_list, true));
+
+        // Update the post meta
+        update_post_meta($post_id, '_wp_reference_list', $reference_list);
     }
 }
 
