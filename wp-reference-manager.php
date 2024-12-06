@@ -113,8 +113,20 @@ class WP_Reference_Manager {
      * Enqueue editor assets
      */
     public function enqueue_editor_assets() {
-        $asset_file = include(WP_REFERENCE_MANAGER_PLUGIN_DIR . 'build/main.asset.php');
+        $asset_file_path = WP_REFERENCE_MANAGER_PLUGIN_DIR . 'build/index.asset.php';
         
+        if (!file_exists($asset_file_path)) {
+            error_log('WP Reference Manager: Asset file not found: ' . $asset_file_path);
+            return;
+        }
+
+        $asset_file = include($asset_file_path);
+        
+        if (!is_array($asset_file) || !isset($asset_file['dependencies']) || !isset($asset_file['version'])) {
+            error_log('WP Reference Manager: Invalid asset file structure');
+            return;
+        }
+
         wp_enqueue_script(
             'wp-reference-manager-editor',
             WP_REFERENCE_MANAGER_PLUGIN_URL . 'build/index.js',
@@ -124,7 +136,7 @@ class WP_Reference_Manager {
 
         wp_enqueue_style(
             'wp-reference-manager-editor',
-            WP_REFERENCE_MANAGER_PLUGIN_URL . 'build/style-index.css',
+            WP_REFERENCE_MANAGER_PLUGIN_URL . 'build/style-main.css',
             array('wp-edit-blocks'),
             $asset_file['version']
         );
