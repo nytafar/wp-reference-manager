@@ -1,6 +1,6 @@
 {
   "name": "wp-reference-manager",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "WordPress block editor plugin for managing references and citations",
   "scripts": {
     "build": "wp-scripts build",
