@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-01-27
+### Added
+- Integration with WordPress native footnotes
+- Reference store for managing citations
+- Reference selector in footnote editor
+- APA style reference formatting
+- Automatic footnote content generation from references
+
 ## [1.0.2] - 2024-12-06
 ### Added
 - Initial plugin structure and setup
@@ -40,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Plugin activation/deactivation hooks
 - Basic documentation
 
-[Unreleased]: https://github.com/nytafar/wp-reference-manager/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/nytafar/wp-reference-manager/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/nytafar/wp-reference-manager/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/nytafar/wp-reference-manager/compare/v1.0.0...v1.0.2
 [1.0.0]: https://github.com/nytafar/wp-reference-manager/releases/tag/v1.0.0

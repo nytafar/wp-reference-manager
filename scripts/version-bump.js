@@ -64,13 +64,29 @@ changelogContent = changelogContent.replace(
     `## [Unreleased]\n\n## [${newVersion}] - ${today}`
 );
 
-// Update comparison links
-const lines = changelogContent.split('\n');
-const lastLine = lines[lines.length - 1];
-const repoUrl = lastLine.match(/https:\/\/github\.com\/[^\/]+\/[^\/]+/)[0];
+// Get repository URL from git remote
+const repoUrl = execSync('git remote get-url origin')
+    .toString()
+    .trim()
+    .replace(/\.git$/, '')
+    .replace(/^git@github\.com:/, 'https://github.com/');
 
+// Update comparison links
 if (!changelogContent.includes(`[${newVersion}]:`)) {
-    changelogContent += `\n[${newVersion}]: ${repoUrl}/compare/v${currentVersion}...v${newVersion}`;
+    // Add new version comparison link
+    const versionLinkPattern = /\[Unreleased\]: (.+)\/compare\/(.+)\.\.\.HEAD/;
+    const match = changelogContent.match(versionLinkPattern);
+    
+    if (match) {
+        // Update existing links
+        changelogContent = changelogContent.replace(
+            versionLinkPattern,
+            `[Unreleased]: ${repoUrl}/compare/v${newVersion}...HEAD\n[${newVersion}]: ${repoUrl}/compare/${match[2]}...v${newVersion}`
+        );
+    } else {
+        // Add initial links
+        changelogContent += `\n\n[Unreleased]: ${repoUrl}/compare/v${newVersion}...HEAD\n[${newVersion}]: ${repoUrl}/releases/tag/v${newVersion}`;
+    }
 }
 
 fs.writeFileSync('./CHANGELOG.md', changelogContent);

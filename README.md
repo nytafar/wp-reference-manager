@@ -1,22 +1,29 @@
 # WP Reference Manager
 
-A modern WordPress block editor plugin for managing references, citations, and footnotes.
+A modern WordPress block editor plugin for managing references and citations through native WordPress footnotes.
 
 ## Features
 
-- Insert formatted references using PMID, DOI (CrossRef, DataCite, & mEDRA), URL, or ISBN
-- Manually insert formatted references as footnotes in the block editor
-- Import bibliography from reference managers using .ris files
-- Automatic reference formatting for specified citation styles
-- Interactive reference list beside the block editor
-- Automatic footnote management
-- Hover-to-view inline citations on the frontend
+- Seamless integration with WordPress native footnotes
+- Add references using PMID, DOI, URL, or ISBN
+- Automatic reference fetching and formatting in APA style
+- Interactive reference sidebar in the block editor
+- Real-time reference preview and selection
+- Persistent reference storage across posts
+- Clean and modern UI integrated with the block editor
 
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/wp-reference-manager` directory
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Settings->WP Reference Manager screen to configure the plugin
+3. Start using references in your posts through the block editor
+
+## Usage
+
+1. In the block editor, add a footnote block
+2. Use the reference selector to choose or add a new reference
+3. The footnote will be automatically formatted with your reference
+4. Manage all your references through the sidebar
 
 ## Development
 
@@ -24,7 +31,7 @@ A modern WordPress block editor plugin for managing references, citations, and f
 
 - Node.js (v14 or later)
 - npm (v6 or later)
-- WordPress (v5.8 or later)
+- WordPress (v6.0 or later)
 
 ### Setup
 
@@ -39,6 +46,8 @@ A modern WordPress block editor plugin for managing references, citations, and f
 - `npm run build`: Build for production
 - `npm run lint`: Run linting
 - `npm run format`: Format code
+- `npm run build:dist`: Create distribution package
+- `npm run version-bump`: Update version numbers across files
 
 ## License
 
