@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-01-27
+
+## [1.1.1] - 2024-12-07
+### Changed
+- Added an `auth_callback` parameter to the `register_post_meta` function to ensure correct permissions when editing the `_wp_reference_list` post meta.
+
+### Fixed
+- Resolved permission issues preventing updates to the `_wp_reference_list` custom field.
+
 ## [1.1.0] - 2025-01-27
 ### Added
 - Integration with WordPress native footnotes
@@ -48,7 +57,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Plugin activation/deactivation hooks
 - Basic documentation
 
-[Unreleased]: https://github.com/nytafar/wp-reference-manager/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/nytafar/wp-reference-manager/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/nytafar/wp-reference-manager/compare/v1.1.1...v1.2.0
+[1.1.1]: https://github.com/nytafar/wp-reference-manager/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/nytafar/wp-reference-manager/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/nytafar/wp-reference-manager/compare/v1.0.0...v1.0.2
 [1.0.0]: https://github.com/nytafar/wp-reference-manager/releases/tag/v1.0.0

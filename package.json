@@ -1,6 +1,6 @@
 {
   "name": "wp-reference-manager",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "WordPress block editor plugin for managing references and citations",
   "scripts": {
     "build": "wp-scripts build",
@@ -9,7 +9,7 @@
     "lint:css": "wp-scripts lint-style",
     "lint": "npm run lint:js && npm run lint:css",
     "format": "wp-scripts format",
-    "build:dist": "npm run build && rm -rf dist && mkdir dist && cp -r build includes languages wp-reference-manager.php readme.txt dist/ && cd dist && zip -r ../wp-reference-manager.zip .",
+    "build:dist": "npm run build && rm -rf ../wp-reference-manager-dist && mkdir ../wp-reference-manager-dist && cp -r build wp-reference-manager.php readme.txt ../wp-reference-manager-dist/ && cd ../wp-reference-manager-dist && zip -r ../wp-reference-manager/wp-reference-manager.zip .",
     "postinstall": "chmod +x scripts/pre-commit && mkdir -p .git/hooks && cp scripts/pre-commit .git/hooks/",
     "version-bump": "node scripts/version-bump.js"
   },
